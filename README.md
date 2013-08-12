@@ -1,4 +1,4 @@
-ci_file_cache
-=============
+File Cache for CodeIgniter
+==========================
 
-CodeIgniter File Cache
+By Pablo Schonfeld - http://pabloschonfeld.com
