@@ -21,7 +21,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
- class simple_cache {
+class ci_file_cache {
 
 	/**
 	 * @var int containing the number of seconds that a cached item will be considered current
@@ -42,11 +42,9 @@
 
 	function __construct(){
 		// check if the developer has not set a custom cache directory
-		if (empty($this->cache_dir) == true)
-		{
+		if (empty($this->cache_dir) == true){
 			// check CodeIgniter version
-			if (version_compare(CI_VERSION, '2.0', 'ge') == true)
-			{
+			if (version_compare(CI_VERSION, '2.0', 'ge') == true){
 				$this->cache_dir = APPPATH;
 			} else {
 				$this->cache_dir = BASEPATH;
@@ -65,7 +63,7 @@
 	 * @param mixed $value to be cached
 	 */
 	function cache_item( $key, $value ){
-		if ( $this->cache_activado == TRUE ) {
+		if ( $this->cache_activado == TRUE ){
 			// hashing the key in order to ensure that the item is stored with an appropriate file name in the file system.
 			$key = sha1( $key );
 
@@ -122,15 +120,14 @@
 	/**
 	 * Clear all cache
 	 */
-	function clear_all_cache()
-	{
+	function clear_all_cache(){
 		$files = glob( $this->cache_dir . 'cache/*.cache' ); // get all file ".cache"
 		if ( ! ( empty( $files ) || is_null( $files )) ) {
 			foreach( $files as $file ){ // iterate files
 				if( isset($file) && is_file($file) )
 			    unlink( $file ); // delete file
-			}
 		}
+	}
 		$files = glob( $this->cache_dir . 'cache/*.cache' ); // get all file ".cache"
 		if ( empty($files) ) {
 			return TRUE;
