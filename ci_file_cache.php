@@ -26,8 +26,8 @@ class ci_file_cache {
 	/**
 	 * @var int containing the number of seconds that a cached item will be considered current
 	 */
-	public $expire_after   = CACHE_EXPIRACION;
-	public $cache_activado = CACHE_ACTIVADO;
+	public $expire_after   = CACHE_EXPIRE; // Time to expire, in seconds..
+	public $cache_activado = CACHE_ACTIVATE; // Turn on/off cache
 
     /**
      * @var String containing the directory to save the cached files in
@@ -126,8 +126,8 @@ class ci_file_cache {
 			foreach( $files as $file ){ // iterate files
 				if( isset($file) && is_file($file) )
 			    unlink( $file ); // delete file
+			}
 		}
-	}
 		$files = glob( $this->cache_dir . 'cache/*.cache' ); // get all file ".cache"
 		if ( empty($files) ) {
 			return TRUE;
@@ -138,7 +138,7 @@ class ci_file_cache {
 	 * Count cached items
 	 */
 	function count_cache_items(){
-		$files = glob( $this->cache_dir . 'cache/*.cache' ); // get all file ".cache"
+		$files = glob( $this->cache_dir . 'cache/*.cache' ); // get all files ".cache"
 		return ( count( $files ) );
 	}
 
